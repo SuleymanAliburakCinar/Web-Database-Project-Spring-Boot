@@ -12,6 +12,8 @@ public interface AccountService {
 
     DataResult<Account> getByAccountName(String accountName);
 
+    DataResult<List<Account>> getAllSorted();
+
     Result updateAccountCharacterCounter();
 
 

@@ -26,6 +26,6 @@ public class Account {
     @Column(name = "character_counter")
     private Integer count;
 
-    @OneToMany(mappedBy = "account")
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "account", cascade = CascadeType.ALL)
     private List<Character> characters;
 }

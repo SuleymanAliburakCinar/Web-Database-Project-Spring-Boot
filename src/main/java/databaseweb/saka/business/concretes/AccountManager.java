@@ -7,6 +7,7 @@ import databaseweb.saka.core.utilities.results.SuccessDataResult;
 import databaseweb.saka.dataAccess.abstracts.AccountDao;
 import databaseweb.saka.entities.concretes.Account;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -33,10 +34,16 @@ public class AccountManager implements AccountService {
     }
 
     @Override
+    public DataResult<List<Account>> getAllSorted() {
+        Sort sort = Sort.by(Sort.Direction.ASC, "count");
+        return new SuccessDataResult<List<Account>>(this.accountDao.findAll(sort), "sorted with character");
+    }
+
+    @Override
     public Result updateAccountCharacterCounter() {
         List<Account> accountList = this.accountDao.findAll();
         accountList.stream().forEach(account -> {
-            long countL = account.getCharacters().stream().filter(character -> character.getCharacterLevel() < 29).count();
+            long countL = account.getCharacters().stream().filter(character -> character.getCharacterLevel() >= 29).count();
             account.setCount((int) countL);
             this.accountDao.save(account);
         });

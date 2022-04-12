@@ -22,17 +22,22 @@ public class AccountController {
     }
 
     @GetMapping("/getAllAccounts")
-    private DataResult<List<Account>> getAll(){
+    public DataResult<List<Account>> getAll(){
         return this.accountService.getAll();
     }
 
     @GetMapping("/getByAccountName")
-    private DataResult<Account> getByAccountName(@RequestParam String accountName){
+    public DataResult<Account> getByAccountName(@RequestParam String accountName){
         return this.accountService.getByAccountName(accountName);
     }
 
+    @GetMapping("/getAllAccountsSorted")
+    public DataResult<List<Account>> getAllSorted(){
+        return this.accountService.getAllSorted();
+    }
+
     @GetMapping("/updateAccounts")
-    private Result updateAccounts(){
+    public Result updateAccounts(){
         return this.accountService.updateAccountCharacterCounter();
     }
 

@@ -9,4 +9,6 @@ public interface CharacterWithAccountService {
 
     DataResult<List<CharacterWithAccount>> getAll();
 
+    DataResult<List<Integer>> getLevelInfo();
+
 }

@@ -29,4 +29,9 @@ public class CharacterWithAccountController {
         return this.characterWithAccountService.getAll();
     }
 
+    @GetMapping("/getLevels")
+    public  DataResult<List<Integer>> getLevelInfo(){
+        return this.characterWithAccountService.getLevelInfo();
+    }
+
 }
